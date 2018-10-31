@@ -24,6 +24,16 @@ export class ListingController extends BaseController {
         return await this.listingService.getListing(res, id);
     }
 
+    public async getAllListings(req: Request, res: Response) {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+
+        return await this.listingService.getAllListings(res);
+    }
+
     public async getListedListings(req: Request, res: Response) {
         const errors = validationResult(req);
         const tenantId = req['tenant'];

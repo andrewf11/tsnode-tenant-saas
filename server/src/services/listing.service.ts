@@ -21,6 +21,17 @@ export class ListingService {
     }
 
 
+    public async getAllListings(res: Response) {
+        const listings = await this.listingRepository.find({relations: ["Unit"]});
+
+        if (!listings) {
+            return res.status(422).json({'errors': [{'msg': 'No Listings found.'}]});
+        }
+
+        return res.status(200).json(listings);
+    }
+
+
 
     public async getListedListings(res: Response, tenantId: number) {
         console.log('at service')

@@ -151,6 +151,10 @@ export default {
     return HTTP.get(`/listings/${id}`)
   },
 
+  getAllListings () {
+    return axios.get(`/listings`)
+  },
+
   getListedListings () {
     return HTTP.get('/listings/listed')
   },
@@ -169,5 +173,9 @@ export default {
 
   getUnitFeatures () {
     return HTTP.get('/unitfeatures')
+  },
+
+  createApplicant (params) {
+    return axios.post(`/applicants`, params)
   }
 }
