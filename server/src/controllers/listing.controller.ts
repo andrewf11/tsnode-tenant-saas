@@ -31,7 +31,12 @@ export class ListingController extends BaseController {
             return res.status(422).json({ errors: errors.array() });
         }
 
-        return await this.listingService.getAllListings(res);
+        let domain;
+        if (req.body && req.body.domain) {
+            domain = req.body.domain;
+        }
+
+        return await this.listingService.getAllListings(res, domain);
     }
 
     public async getListedListings(req: Request, res: Response) {
